@@ -28,10 +28,12 @@ blocks:
       jobs:
         - name: Unit tests
           commands:
-            - python tests/units.py
+            - python --junitxml=report.xml tests/units.py
+            - '[[ -f report.xml ]] && test-results publish report.xml'
         - name: pylint
           commands:
-            - pylint src/*
+            - pylint --output-format=pylint_junit.JUnitReporter src --output report.xml
+            - '[[ -f report.xml ]] && test-results publish report.xml'
         - name: pip-audit
           commands:
             - pip-audit -r requirements.txt
@@ -78,3 +80,9 @@ blocks:
       prologue:
         commands:
           - pip install --cache-dir .pip_cache -r requirements.txt
+after_pipeline:
+  task:
+    jobs:
+      - name: Process test results
+        commands:
+          - test-results gen-pipeline-report
