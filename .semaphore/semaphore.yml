@@ -25,6 +25,7 @@ blocks:
       jobs:
         - name: Unit tests
           commands:
+            - 'echo "Redis Port: $REDIS_PORT"'
             - python tests/units.py
         - name: pylint
           commands:
