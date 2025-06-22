@@ -16,7 +16,7 @@ blocks:
           commands:
             - 'docker pull "$DOCKER_USERNAME" final-project:latest || true'
             - 'docker build --cache-from "$DOCKER_USERNAME"/final-project:latest -t "$DOCKER_USERNAME"/final-project:latest .'
-            - 'docker push "$DOCKER_USERNAME" final-project:latest'
+            - 'docker push "$DOCKER_USERNAME"/final-project:latest'
       secrets:
         - name: dockerhub
       prologue:
