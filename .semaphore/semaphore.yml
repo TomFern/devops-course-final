@@ -59,3 +59,17 @@ blocks:
         - name: Integration tests
           commands:
             - python tests/integrations.py
+  - name: Chain supply
+    task:
+      jobs:
+        - name: Sign app.py
+          commands:
+            - gpg --import /root/public.key
+            - gpg --import /root/private.key
+            - gpg --output signature.sig --detach-sign src/app.py
+            - gpg --verify signature.sig src/app.py
+            - artifact push workflow --force signature.sig
+        - name: Generate SBOM
+          commands:
+            - cyclonedx-py requirements -o sbom.json
+            - artifact push workflow --force sbom.json
