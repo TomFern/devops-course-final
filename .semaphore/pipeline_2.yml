@@ -1,0 +1,17 @@
+version: v1.0
+name: Docker build
+agent:
+  machine:
+    type: s1-docker
+    os_image: ''
+global_job_config:
+  prologue:
+    commands:
+      - checkout
+blocks:
+  - name: Image build
+    task:
+      jobs:
+        - name: Docker build
+          commands:
+            - 'docker build -t tomfern/final-project:latest .'
