@@ -4,6 +4,7 @@ FROM python:3.9-slim
 # Environment variables to ensure proper Python behavior.
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
+ENV DEBUG_MODE=False
 
 # Set the working directory inside the container.
 WORKDIR /app
