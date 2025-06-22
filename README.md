@@ -6,7 +6,7 @@
 
 - A Continuous Integration pipeline with the following jobs:
   - Build or download dependencies. Cache the project dependencies.
-  - Linter. Use pyflake to lint your Python code
+  - Linter. Use pylint to lint your Python code
   - Dependency security scanning. Ensure there are no vulnerabilities
   - Static security scanning. Ensure there are no vulnerabilities
   - Unit tests
@@ -31,4 +31,6 @@ You have the following resources at your disposal:
 - Unit and integration tests for the application
 - Docker compose configuration to test locally
 - Dockerfile to build the application image
-- Use Python 3.9 to build, run and test the application
+- Tip: You may need to add dependencies to your `requirements.txt`
+- Tip: You need to define the following environment variable in your jobs: `REDIS_PORT=6379`
+- Use Python 3.9 to build, run and test the application —— NOTE: docker-based image testing -> registry.semaphoreci.com/python:3.12.1
