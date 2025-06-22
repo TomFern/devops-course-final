@@ -12,6 +12,8 @@ global_job_config:
     commands:
       - checkout
       - cache restore
+      - 'echo "Redis Host: $REDIS_HOST"'
+      - 'echo "Redis Port: $REDIS_PORT"'
 blocks:
   - name: Dependencies
     task:
@@ -25,7 +27,6 @@ blocks:
       jobs:
         - name: Unit tests
           commands:
-            - 'echo "Redis Port: $REDIS_PORT"'
             - python tests/units.py
         - name: pylint
           commands:
