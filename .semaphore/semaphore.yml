@@ -37,7 +37,7 @@ blocks:
             - pip-audit -r requirements.txt
         - name: bandit
           commands:
-            - bandir -r src/app.py
+            - bandit -r src/*
       prologue:
         commands:
           - pip install --cache-dir .pip_cache -r requirements.txt

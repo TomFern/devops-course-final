@@ -15,7 +15,7 @@ redis_port = int(os.environ.get("REDIS_PORT", 6379))
 # Listen interface
 bind_host = os.environ.get("LISTEN_HOST", "127.0.0.1")
 bind_port = os.environ.get("LISTEN_PORT", 4000)
-debug_mode = os.environ.get("DEBUG_MODE", "True") == True
+debug_mode = os.environ.get("DEBUG_MODE", "True") is True
 
 # Connect to Redis
 r = redis.Redis(host=redis_host, port=redis_port, decode_responses=True)
