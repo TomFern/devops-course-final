@@ -12,6 +12,7 @@ global_job_config:
     commands:
       - checkout
       - cache restore
+      - export REDIS_PORT=6379
       - 'echo "Redis Host: $REDIS_HOST"'
       - 'echo "Redis Port: $REDIS_PORT"'
 blocks:
