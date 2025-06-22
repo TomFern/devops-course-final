@@ -1,0 +1,34 @@
+version: v1.0
+name: Initial Pipeline
+agent:
+  machine:
+    type: s1-kubernetes
+    os_image: ''
+  containers:
+    - name: main
+      image: 'registry.semaphoreci.com/python:3.12.1'
+global_job_config:
+  prologue:
+    commands:
+      - checkout
+      - cache restore
+blocks:
+  - name: Dependencies
+    task:
+      jobs:
+        - name: pip install
+          commands:
+            - pip download --cache-dir .pip_cache -r requirements.txt
+            - cache store
+  - name: Fast tests
+    task:
+      jobs:
+        - name: Unit tests
+          commands:
+            - python tests/units.py
+        - name: pylint
+          commands:
+            - pylint src/*
+        - name: pip-audit
+          commands:
+            - pip-audit -r requirements.txt
