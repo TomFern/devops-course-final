@@ -28,7 +28,7 @@ blocks:
       jobs:
         - name: Unit tests
           commands:
-            - python --junitxml=report.xml tests/units.py
+            - pytest --junitxml=report.xml tests/units.py
             - '[[ -f report.xml ]] && test-results publish report.xml'
         - name: pylint
           commands:
