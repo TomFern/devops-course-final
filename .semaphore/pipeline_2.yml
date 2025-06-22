@@ -14,4 +14,11 @@ blocks:
       jobs:
         - name: Docker build
           commands:
-            - 'docker build -t tomfern/final-project:latest .'
+            - 'docker pull "$DOCKER_USERNAME" final-project:latest || true'
+            - 'docker build --cache-from "$DOCKER_USERNAME"/final-project:latest -t "$DOCKER_USERNAME"/final-project:latest .'
+            - 'docker push "$DOCKER_USERNAME" final-project:latest'
+      secrets:
+        - name: dockerhub
+      prologue:
+        commands:
+          - echo $DOCKER_PASSWORD | docker login --username "$DOCKER_USERNAME" --password-stdin
