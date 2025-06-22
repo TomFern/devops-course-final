@@ -12,7 +12,6 @@ global_job_config:
     commands:
       - checkout
       - cache restore
-      - pip install --cache-dir .pip_cache -r requirements.txt
 blocks:
   - name: Dependencies
     task:
@@ -33,3 +32,6 @@ blocks:
         - name: pip-audit
           commands:
             - pip-audit -r requirements.txt
+      prologue:
+        commands:
+          - pip install --cache-dir .pip_cache -r requirements.txt
