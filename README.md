@@ -32,6 +32,7 @@ You have the following resources at your disposal:
 - Docker compose configuration to test locally
 - Dockerfile to build the application image
 - Only files in the `app` directory have to pass security tests
+- Tip: Your GitHub project must be public
 - Tip: You may need to add dependencies to your `requirements.txt`
 - Tip: You need to define the following environment variable in your jobs: `REDIS_PORT=6379`
 - Use Python 3.9 to build, run and test the application —— NOTE: docker-based image testing -> registry.semaphoreci.com/python:3.12.1
